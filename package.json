@@ -1,0 +1,22 @@
+{
+  "name": "opencascade.js-custom-build-yaml-generator",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "bin": "cli.js",
+  "prettier": {
+    "printWidth": 140,
+    "trailingComma": "all"
+  },
+  "scripts": {
+    "example": "node cli.js example/source.ts"
+  },
+  "dependencies": {
+    "dts-bundle-generator": "^5.9.0",
+    "opencascade.js": "^2.0.0-beta.371bbb0",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
+  }
+}
