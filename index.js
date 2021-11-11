@@ -63,6 +63,7 @@ module.exports = ({ classes, name = "custom-opencascade.js", outfile = name.repl
         intermediate2,
         generateDtsBundle([{ filePath: intermediate1, libraries: { inlinedLibraries: "opencascade.js" } }])[0],
       );
+      fs.mkdirSync(path.dirname(outfile), { recursive: true });
       fs.writeFileSync(outfile, yamlTemplate(name, collectClassNames(intermediate2)), "utf8");
     } finally {
       debug || fs.rmSync(tempPath, { recursive: true });
