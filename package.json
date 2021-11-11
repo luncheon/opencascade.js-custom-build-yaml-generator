@@ -9,7 +9,7 @@
     "trailingComma": "all"
   },
   "scripts": {
-    "example": "node cli.js example/source.ts"
+    "example": "node cli.js -o example.yaml IFSelect_ReturnStatus STEPControl_Reader StepVisual_ColourRgb"
   },
   "dependencies": {
     "dts-bundle-generator": "^5.9.0",

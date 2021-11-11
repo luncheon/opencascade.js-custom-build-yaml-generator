@@ -47,12 +47,7 @@ const collectClassNames = (sourceFilePath) => {
   return classNames.sort();
 };
 
-module.exports = ({
-  source,
-  outfile = path.resolve(path.dirname(source), "custom-opencascade.yaml"),
-  name = "custom-opencascade.js",
-  debug = false,
-}) => {
+module.exports = ({ classes, name = "custom-opencascade.js", outfile = name.replace(/\.js$/, "") + ".yaml", debug = false }) => {
   fs.mkdtemp(`.${thisPackageName}`, (err, tempPath) => {
     if (err) {
       throw err;
@@ -61,7 +56,7 @@ module.exports = ({
       const sourceFilePath = path.resolve(tempPath, "source.ts");
       const intermediate1 = path.resolve(tempPath, "intermediate1.d.ts");
       const intermediate2 = path.resolve(tempPath, "intermediate2.d.ts");
-      fs.copyFileSync(source, sourceFilePath);
+      fs.writeFileSync(sourceFilePath, `export { ${classes.join()} } from "opencascade.js"`);
       fs.writeFileSync(path.resolve(tempPath, "tsconfig.json"), `{"compilerOptions":{"skipLibCheck":true}}`, "utf8");
       fs.writeFileSync(intermediate1, makeupMissingTypes(sourceFilePath), "utf8");
       fs.writeFileSync(
